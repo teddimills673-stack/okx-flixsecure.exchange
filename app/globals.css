@@ -1,0 +1,133 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+:root {
+  --sat: env(safe-area-inset-top);
+  --sab: env(safe-area-inset-bottom);
+  --sal: env(safe-area-inset-left);
+  --sar: env(safe-area-inset-right);
+}
+
+html, body {
+  overscroll-behavior-y: none;
+  background-color: #0b0f19;
+  color: #f8fafc;
+  width: 100%;
+  height: 100%;
+  overflow-x: hidden;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-gutter: stable;
+}
+
+@layer base {
+  body {
+    overflow-x: hidden;
+    overflow-y: auto;
+    padding-top: var(--sat);
+    padding-bottom: var(--sab);
+    padding-left: var(--sal);
+    padding-right: var(--sar);
+    background: radial-gradient(circle at 50% 0%, #1e1b4b 0%, #0b0f19 75%);
+  }
+}
+
+html.light-theme, body.light-theme {
+  background-color: #f8fafc !important;
+  color: #0f172a !important;
+  background: #f8fafc !important;
+}
+
+html.light-theme .bg-slate-900,
+html.light-theme .bg-slate-900\/90,
+html.light-theme .bg-slate-950,
+html.light-theme .bg-slate-950\/90 {
+  background-color: #ffffff !important;
+  color: #0f172a !important;
+  border-color: #cbd5e1 !important;
+}
+
+html.light-theme .text-white {
+  color: #0f172a !important;
+}
+
+html.light-theme .text-slate-300,
+html.light-theme .text-slate-400,
+html.light-theme .text-slate-500 {
+  color: #475569 !important;
+}
+
+html.light-theme input,
+html.light-theme select,
+html.light-theme textarea {
+  background-color: #f1f5f9 !important;
+  color: #0f172a !important;
+  border-color: #cbd5e1 !important;
+}
+
+.glass-panel {
+  background: rgba(15, 23, 42, 0.65);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+html.light-theme .glass-panel {
+  background: rgba(255, 255, 255, 0.85) !important;
+  border: 1px solid rgba(0, 0, 0, 0.08) !important;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.8) !important;
+  color: #0f172a !important;
+}
+
+.glass-card {
+  background: rgba(30, 41, 59, 0.45);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.35);
+}
+
+html.light-theme .glass-card {
+  background: rgba(241, 245, 249, 0.9) !important;
+  border: 1px solid rgba(0, 0, 0, 0.06) !important;
+  color: #0f172a !important;
+}
+
+.glass-input {
+  background: rgba(10, 15, 30, 0.7);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+html.light-theme .glass-input {
+  background: rgba(255, 255, 255, 0.9) !important;
+  border: 1px solid rgba(0, 0, 0, 0.12) !important;
+  color: #0f172a !important;
+}
+
+#tawk-host-container iframe,
+#tawk-host-container #tawkchat-container {
+  width: 100% !important;
+  height: 100% !important;
+  max-width: 100% !important;
+  max-height: 100% !important;
+  position: relative !important;
+  bottom: auto !important;
+  right: auto !important;
+  top: auto !important;
+  left: auto !important;
+  z-index: 1 !important;
+  border: none !important;
+  background: transparent !important;
+}
+
+body:not(.tawk-active) iframe[src*="tawk.to"],
+body:not(.tawk-active) #tawkchat-container,
+body:not(.tawk-active) #tawkchat-minified-container,
+body:not(.tawk-active) [id*="tawk"] {
+  display: none !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+  visibility: hidden !important;
+}
