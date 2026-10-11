@@ -22,6 +22,7 @@ import { LegalView } from '@/components/LegalView';
 import { LawEnforcementView } from '@/components/LawEnforcementView';
 import { FAQView } from '@/components/FAQView';
 import { AdminView } from '@/components/AdminView';
+import { XRwaView } from '@/components/XRwaView';
 import { FeesSystemView } from '@/components/FeesSystemView';
 
 import { FeeProtocolModal } from '@/components/FeeProtocolModal';
@@ -55,11 +56,11 @@ const MainContent: React.FC = () => {
 
   if (!isAuthenticated) {
     return (
-      <>
+      <div className="min-h-screen bg-[#0b0f19] text-white">
         <ThemeSync />
         <PublicLandingView />
         <AuthModal />
-      </>
+      </div>
     );
   }
 
@@ -88,7 +89,7 @@ const MainContent: React.FC = () => {
             {activeTab === 'law-enforcement' && <LawEnforcementView />}
             {activeTab === 'faq' && <FAQView />}
             {activeTab === 'admin' && <AdminView />}
-            {activeTab === 'x-rwa' && <AdminView />}
+            {activeTab === 'x-rwa' && <XRwaView />}
             {activeTab === 'fees-system' && <FeesSystemView />}
           </div>
         </main>

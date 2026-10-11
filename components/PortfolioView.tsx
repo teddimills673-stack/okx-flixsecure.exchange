@@ -53,29 +53,31 @@ export const PortfolioView: React.FC = () => {
       </div>
 
       {/* Overview Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-4 lg:gap-6 min-w-0">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-6 min-w-0">
         <div className="bg-slate-900/90 border border-slate-800 rounded-2xl p-5 sm:p-6 shadow-xl min-w-0 overflow-hidden">
           <p className="text-xs text-slate-400 font-medium mb-1 truncate">Total Net Worth</p>
-          <h2 className="text-xl sm:text-2xl lg:text-3xl font-bold text-white font-mono tracking-tight break-all">{formattedTotal.symbol} {formattedTotal.formatted}</h2>
-          <div className="mt-3 flex items-center gap-2 text-xs text-emerald-400 font-mono truncate">
-            <TrendingUp className="w-4 h-4 shrink-0" />
-            <span className="truncate">{roiDisplay}</span>
+          <div className="flex flex-wrap items-baseline justify-between gap-x-3 gap-y-1 mt-1">
+            <h2 className="text-lg sm:text-2xl font-bold text-white font-mono tracking-tight break-all">{formattedTotal.symbol} {formattedTotal.formatted}</h2>
+            <div className="flex items-center gap-1.5 text-xs text-emerald-400 font-mono shrink-0">
+              <TrendingUp className="w-4 h-4 shrink-0" />
+              <span>{roiDisplay}</span>
+            </div>
           </div>
         </div>
 
         <div className="bg-slate-900/90 border border-slate-800 rounded-2xl p-5 sm:p-6 shadow-xl min-w-0 overflow-hidden">
           <p className="text-xs text-slate-400 font-medium mb-1 truncate">Realized Profit & Loss</p>
-          <h2 className={`text-xl sm:text-2xl lg:text-3xl font-bold font-mono tracking-tight break-all ${isOwner ? 'text-emerald-400' : 'text-slate-200'}`}>{realizedPnLDisplay}</h2>
-          <div className="mt-3 flex items-center gap-2 text-xs text-slate-400 font-mono truncate">
-            <span className="truncate">Locked & Settled Gains</span>
+          <div className="flex flex-wrap items-baseline justify-between gap-x-3 gap-y-1 mt-1">
+            <h2 className={`text-lg sm:text-2xl font-bold font-mono tracking-tight break-all ${isOwner ? 'text-emerald-400' : 'text-slate-200'}`}>{realizedPnLDisplay}</h2>
+            <span className="text-xs text-slate-400 font-mono shrink-0">Locked Gains</span>
           </div>
         </div>
 
-        <div className="bg-slate-900/90 border border-slate-800 rounded-2xl p-5 sm:p-6 shadow-xl min-w-0 overflow-hidden">
+        <div className="bg-slate-900/90 border border-slate-800 rounded-2xl p-5 sm:p-6 shadow-xl min-w-0 overflow-hidden sm:col-span-2 lg:col-span-1">
           <p className="text-xs text-slate-400 font-medium mb-1 truncate">Unrealized P&L (Open Positions)</p>
-          <h2 className={`text-xl sm:text-2xl lg:text-3xl font-bold font-mono tracking-tight break-all ${isOwner ? 'text-emerald-400' : 'text-slate-200'}`}>{unrealizedPnLDisplay}</h2>
-          <div className="mt-3 flex items-center gap-2 text-xs text-slate-400 font-mono truncate">
-            <span className="truncate">Mark-to-Market Valuation</span>
+          <div className="flex flex-wrap items-baseline justify-between gap-x-3 gap-y-1 mt-1">
+            <h2 className={`text-lg sm:text-2xl font-bold font-mono tracking-tight break-all ${isOwner ? 'text-emerald-400' : 'text-slate-200'}`}>{unrealizedPnLDisplay}</h2>
+            <span className="text-xs text-slate-400 font-mono shrink-0">Mark-to-Market</span>
           </div>
         </div>
       </div>

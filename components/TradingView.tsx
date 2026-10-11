@@ -492,15 +492,7 @@ export const TradingView: React.FC = () => {
                 </div>
               )}
 
-              {/* Footer status */}
-              <div className="flex items-center justify-between text-[10px] font-mono text-slate-400 pt-2 border-t border-slate-800">
-                <span className="flex items-center gap-1.5 text-emerald-400">
-                  <CheckCircle2 className="w-3.5 h-3.5" />
-                  <span>Real-Time WebSocket & REST Stream Active</span>
-                </span>
-                <span>Source: {dataSource}</span>
-              </div>
-            </div>
+             </div>
 
           </div>
 
@@ -773,9 +765,10 @@ export const TradingView: React.FC = () => {
             </form>
           </div>
 
-          <div className="mt-6 pt-4 border-t border-slate-800 text-center">
-            <p className="text-[10px] text-slate-500 font-mono">
-              INSTITUTIONAL ORDER MODE — Executed against real-time Binance & Coinglass price stream.
+          <div className="mt-6 pt-4 border-t border-slate-800 text-center space-y-1">
+            <h4 className="text-xs font-bold text-blue-400 font-mono">Trade Smarter. Stay in Control.</h4>
+            <p className="text-[11px] text-slate-400 font-mono">
+              Manage your orders and monitor market movements from one streamlined trading terminal.
             </p>
           </div>
         </div>

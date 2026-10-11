@@ -149,7 +149,7 @@ export const LiquidNavigationPanel: React.FC = () => {
           return (
             <div key={section.title} className="space-y-3">
               <h3 className="text-[11px] font-mono font-bold text-slate-400 uppercase tracking-widest px-2">{section.title}</h3>
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+              <div className="flex flex-col gap-2.5">
                 {visibleItems.map((item) => {
                   const Icon = item.icon;
                   const isActive = activeTab === item.id;
