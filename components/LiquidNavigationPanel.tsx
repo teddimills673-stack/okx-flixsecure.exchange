@@ -1,6 +1,6 @@
 'use client';
 
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { useApp } from '@/lib/store';
 import { getTranslation } from '@/lib/i18n';
 import { 
@@ -73,6 +73,28 @@ const NAV_SECTIONS: NavSection[] = [
 export const LiquidNavigationPanel: React.FC = () => {
   const { isMobileMenuOpen, setIsMobileMenuOpen, activeTab, setActiveTab, user, logout, language, theme } = useApp();
 
+  const [isPhoneLandscape, setIsPhoneLandscape] = useState(false);
+  const [isPhone, setIsPhone] = useState(false);
+
+  useEffect(() => {
+    const checkOrientation = () => {
+      const width = window.innerWidth;
+      const height = window.innerHeight;
+      const phone = width <= 768;
+      setIsPhone(phone);
+      setIsPhoneLandscape(phone && width > height);
+    };
+
+    checkOrientation();
+    window.addEventListener('resize', checkOrientation);
+    window.addEventListener('orientationchange', checkOrientation);
+
+    return () => {
+      window.removeEventListener('resize', checkOrientation);
+      window.removeEventListener('orientationchange', checkOrientation);
+    };
+  }, []);
+
   React.useEffect(() => {
     if (isMobileMenuOpen) {
       document.body.style.overflow = 'hidden';
@@ -141,6 +163,9 @@ export const LiquidNavigationPanel: React.FC = () => {
         {NAV_SECTIONS.map((section) => {
           const visibleItems = section.items.filter(item => {
             if (item.requiresOwner && !isOwner) return false;
+            if (item.id === 'x-rwa' && isPhone && !isPhoneLandscape) {
+              return false;
+            }
             return true;
           });
 

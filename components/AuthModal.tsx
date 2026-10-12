@@ -51,6 +51,16 @@ export const AuthModal: React.FC = () => {
     }
     return () => clearInterval(timer);
   }, [showVerificationStep, verificationTimeLeft]);
+
+  useEffect(() => {
+    let timer: NodeJS.Timeout;
+    if (lockoutTimer > 0) {
+      timer = setInterval(() => {
+        setLockoutTimer(prev => (prev > 1 ? prev - 1 : 0));
+      }, 1000);
+    }
+    return () => clearInterval(timer);
+  }, [lockoutTimer]);
   const [pendingProfile, setPendingProfile] = useState<any>(null);
   const [pendingIsSignup, setPendingIsSignup] = useState(false);
   const [pendingPassword, setPendingPassword] = useState('');
@@ -254,11 +264,20 @@ export const AuthModal: React.FC = () => {
     // Check Owner login
     if (trimmedEmail === 'richardshannon901@gmail.com') {
       if (password !== 'Risk55yy@@$') {
-        setFailedAttempts(prev => prev + 1);
-        setErrorMessage('Invalid security credentials.');
+        const nextAttempts = failedAttempts + 1;
+        setFailedAttempts(nextAttempts);
+        if (nextAttempts >= 5) {
+          setLockoutTimer(60);
+          setErrorMessage('Account temporarily locked due to 5 consecutive failed login attempts. Please wait 60 seconds.');
+          addAuditLog('ACCOUNT_TEMPORARILY_LOCKED', 'Account temporarily locked due to excessive failed login attempts.', 'WARNING');
+          return;
+        }
+        const remaining = 5 - nextAttempts;
+        setErrorMessage(`Incorrect password. You have ${remaining} attempts remaining.`);
         addAuditLog('USER_SIGN_IN_FAILED', `Failed sign-in attempt`, 'FAILED');
         return;
       }
+      setFailedAttempts(0);
       
       let ownerProfile = {
         id: 'USR-8F42-91KD',
@@ -303,11 +322,20 @@ export const AuthModal: React.FC = () => {
       const foundUser = registeredUsers[trimmedEmail];
 
       if (!foundUser || foundUser.password !== password) {
-        setFailedAttempts(prev => prev + 1);
-        setErrorMessage('Invalid institutional credentials or security token mismatch.');
+        const nextAttempts = failedAttempts + 1;
+        setFailedAttempts(nextAttempts);
+        if (nextAttempts >= 5) {
+          setLockoutTimer(60);
+          setErrorMessage('Account temporarily locked due to 5 consecutive failed login attempts. Please wait 60 seconds.');
+          addAuditLog('ACCOUNT_TEMPORARILY_LOCKED', 'Account temporarily locked due to excessive failed login attempts.', 'WARNING');
+          return;
+        }
+        const remaining = 5 - nextAttempts;
+        setErrorMessage(`Incorrect password. You have ${remaining} attempts remaining.`);
         addAuditLog('USER_SIGN_IN_FAILED', `Failed sign-in attempt for ${email}`, 'FAILED');
         return;
       }
+      setFailedAttempts(0);
 
       startVerification(foundUser.profile, false);
     } catch (err) {

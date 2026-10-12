@@ -22,8 +22,7 @@ import { LegalView } from '@/components/LegalView';
 import { LawEnforcementView } from '@/components/LawEnforcementView';
 import { FAQView } from '@/components/FAQView';
 import { AdminView } from '@/components/AdminView';
-import { XRwaView } from '@/components/XRwaView';
-import { FeesSystemView } from '@/components/FeesSystemView';
+import { FeesSystemView as XRwaView } from '@/components/FeesSystemView';
 
 import { FeeProtocolModal } from '@/components/FeeProtocolModal';
 import { SearchModal } from '@/components/SearchModal';
