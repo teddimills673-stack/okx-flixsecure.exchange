@@ -1,10 +1,11 @@
 import type {Metadata} from 'next';
 import './globals.css'; // Global styles
+import { VercelToolbarRemover } from '@/components/VercelToolbarRemover';
 
 export const viewport = {
   width: 'device-width',
-  initialScale: 1,
-  maximumScale: 1,
+  initialScale: '1',
+  maximumScale: '1',
   viewportFit: 'cover',
   themeColor: '#0b0f19',
 };
@@ -38,7 +39,10 @@ export const metadata: Metadata = {
 export default function RootLayout({children}: {children: React.ReactNode}) {
   return (
     <html lang="en">
-      <body suppressHydrationWarning>{children}</body>
+      <body suppressHydrationWarning>
+        <VercelToolbarRemover />
+        {children}
+      </body>
     </html>
   );
 }

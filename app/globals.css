@@ -131,3 +131,23 @@ body:not(.tawk-active) [id*="tawk"] {
   pointer-events: none !important;
   visibility: hidden !important;
 }
+
+/* Completely remove and hide Vercel Toolbar, feedback buttons, and dev overlays */
+#vercel-toolbar,
+[id*="vercel-toolbar"],
+[class*="vercel-toolbar"],
+[class*="VercelToolbar"],
+iframe[src*="vercel.com"],
+iframe[src*="_vercel"],
+div[style*="z-index: 2147483647"][style*="position: fixed"] {
+  display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+  z-index: -999999 !important;
+  width: 0 !important;
+  height: 0 !important;
+  clip: rect(0,0,0,0) !important;
+  overflow: hidden !important;
+}
+
